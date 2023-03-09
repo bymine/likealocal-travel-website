@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Flex, Spacer, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Spacer } from '@chakra-ui/react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <Flex px={8} py={4}>
       <Link to='/main'>
-        <Text fontSize='3xl'>Travel</Text>
+        <Heading>Travel</Heading>
       </Link>
       <Spacer />
       <Box>

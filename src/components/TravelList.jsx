@@ -4,7 +4,7 @@ import { Grid } from '@chakra-ui/react';
 
 const TravelList = ({ travels }) => {
   return (
-    <Grid templateColumns='repeat(3,1fr)'>
+    <Grid w='100%' templateColumns='repeat(3,1fr)'>
       {travels.map((element) => (
         <TravelCard key={element.idx} travel={element} />
       ))}

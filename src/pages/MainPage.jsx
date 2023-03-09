@@ -1,7 +1,8 @@
+import { Box, Stack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { TravelFilterBox, TravelList } from '../components';
-
-const categories = ['전체', '강원', '부산', '대구', '제주'];
+import { selectPriceCategories, selectSpaceCategories } from '../redux/categories/categoriesSlice';
 
 const isInRange = (range, targetNumber) => {
   return targetNumber >= range[0] && targetNumber <= range[1];
@@ -9,20 +10,15 @@ const isInRange = (range, targetNumber) => {
 
 const MainPage = () => {
   const [travels, setTravels] = useState([]);
-  const [category, setCategory] = useState('전체');
-  const [range, setRange] = useState([0, 50000]);
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
+  const spaceCategories = useSelector(selectSpaceCategories);
+  const priceCategories = useSelector(selectPriceCategories);
+
   const filteredProductList = travels.filter((product) => {
-    if (category === '전체') return isInRange(range, product.price);
-    return product.spaceCategory === category && isInRange(range, product.price);
+    return (
+      spaceCategories.includes(product.spaceCategory) && isInRange(priceCategories, product.price)
+    );
   });
-
-  const handleRangeChange = (newRange) => {
-    setRange(newRange);
-  };
 
   useEffect(() => {
     async function fetchTravels() {
@@ -44,16 +40,12 @@ const MainPage = () => {
 
   if (travels) {
     content = (
-      <div>
-        <TravelFilterBox
-          categories={categories}
-          category={category}
-          handleCategoryChange={handleCategoryChange}
-          range={range}
-          handleRangeChange={handleRangeChange}
-        />
+      <Stack direction='row'>
+        <Box h='auto'>
+          <TravelFilterBox />
+        </Box>
         <TravelList travels={filteredProductList} />
-      </div>
+      </Stack>
     );
   }
 

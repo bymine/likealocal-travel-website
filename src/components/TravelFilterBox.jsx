@@ -1,50 +1,91 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  Box,
+  categoryReset,
+  spaceUpdate,
+  priceUpdate,
+  selectDefaultSpace,
+  selectSpaceCategories,
+  selectDefaultPrice,
+  selectPriceCategories,
+} from '../redux/categories/categoriesSlice';
+import {
   Stack,
-  Select,
   Text,
   RangeSlider,
   RangeSliderTrack,
   RangeSliderFilledTrack,
   RangeSliderThumb,
+  Button,
+  Checkbox,
+  Divider,
+  Box,
+  Flex,
   Spacer,
-  RangeSliderMark,
 } from '@chakra-ui/react';
 
-const TravelFilterBox = ({
-  categories,
-  category,
-  handleCategoryChange,
-  range,
-  handleRangeChange,
-}) => {
+const TravelFilterBox = () => {
+  const dispatch = useDispatch();
+
+  const defaultSpace = useSelector(selectDefaultSpace);
+  const defaultPrice = useSelector(selectDefaultPrice);
+
+  const spaceCategories = useSelector(selectSpaceCategories);
+  const priceCategories = useSelector(selectPriceCategories);
+
   return (
-    <Box p={4}>
-      <Stack direction='row' mb={4}>
-        <Select width='25%' value={category} onChange={handleCategoryChange}>
-          {categories.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </Select>
-        <Spacer />
-        <Box width='50%'>
-          <Text mb='2' fontWeight='bold'>
-            가격 범위 선택 {range[0]} ~ {range[1]}
-          </Text>
-          <RangeSlider min={0} max={50000} step={1000} value={range} onChange={handleRangeChange}>
-            <RangeSliderMark value={25000} mt='1' ml='-2.5' fontSize='sm'>
-              25000
-            </RangeSliderMark>
-            <RangeSliderTrack bg='red.100'>
-              <RangeSliderFilledTrack bg='tomato' />
-            </RangeSliderTrack>
-            <RangeSliderThumb boxSize={6} index={0} bg='teal' />
-            <RangeSliderThumb boxSize={6} index={1} bg='teal' />
-          </RangeSlider>
-        </Box>
+    <Box h='auto' minW={'300px'} direction='column' m={8} borderWidth='1px'>
+      <Stack px={8} py={4} direction='row' spacing={0}>
+        <Button
+          w='100%'
+          colorScheme={'teal'}
+          onClick={() => {
+            dispatch(categoryReset());
+          }}
+        >
+          초기화
+        </Button>
+      </Stack>
+      <Divider />
+      <Stack px={8} py={4}>
+        <Text>지역 설정</Text>
+        {defaultSpace.map((category) => (
+          <Checkbox
+            pl={4}
+            key={category}
+            name={category}
+            isChecked={spaceCategories.includes(category)}
+            onChange={() => {
+              dispatch(spaceUpdate({ category }));
+            }}
+          >
+            {category}
+          </Checkbox>
+        ))}
+      </Stack>
+      <Divider />
+      <Stack px={8} py={4}>
+        <Text>가격 설정</Text>
+        <RangeSlider
+          min={defaultPrice[0]}
+          max={defaultPrice[1]}
+          step={1000}
+          value={priceCategories}
+          onChange={(range) => {
+            dispatch(priceUpdate({ range }));
+          }}
+        >
+          <RangeSliderTrack bg='teal.100'>
+            <RangeSliderFilledTrack bg='teal' />
+          </RangeSliderTrack>
+          <RangeSliderThumb boxSize={3} index={0} bg='teal' />
+          <RangeSliderThumb boxSize={3} index={1} bg='teal' />
+        </RangeSlider>
+        <Flex>
+          <Text>{priceCategories[0]}원</Text>
+          <Spacer />
+          <Text>{priceCategories[1]}원</Text>
+        </Flex>
       </Stack>
     </Box>
   );
