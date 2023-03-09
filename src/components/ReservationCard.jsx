@@ -54,7 +54,7 @@ const ReservationCard = ({ reservation }) => {
         </NumberInput>
       </Td>
       <Td>
-        <Text>{reservation.price * reservation.quantity}</Text>
+        <Text>{reservation.purchasePrice}</Text>
       </Td>
       <Td>
         <Button onClick={handleRemoveResrvation}>삭제</Button>
