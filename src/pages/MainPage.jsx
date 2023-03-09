@@ -10,6 +10,7 @@ const isInRange = (range, targetNumber) => {
 
 const MainPage = () => {
   var a = 1;
+  var b = 2;
   const [travels, setTravels] = useState([]);
 
   const spaceCategories = useSelector(selectSpaceCategories);
