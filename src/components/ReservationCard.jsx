@@ -1,5 +1,7 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { reservationQuantity, reservationRemove } from '../redux/reservations/reservationSlice';
 import {
-  Container,
   Flex,
   Image,
   Text,
@@ -8,34 +10,40 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Box,
   Button,
+  Tr,
+  Td,
+  Box,
 } from '@chakra-ui/react';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { reservationQuantity, reservationRemove } from '../redux/reservations/reservationSlice';
 
-const ReservationCard = ({ travel }) => {
+const ReservationCard = ({ reservation }) => {
   const dispatch = useDispatch();
   const handleQuantityChange = (value) => {
-    dispatch(reservationQuantity({ idx: travel.idx, quantity: value }));
+    dispatch(reservationQuantity({ idx: reservation.idx, quantity: value }));
   };
   const handleRemoveResrvation = () => {
-    dispatch(reservationRemove({ idx: travel.idx }));
+    dispatch(reservationRemove({ idx: reservation.idx }));
   };
   return (
-    <Flex p='6px' m='20px' h={'200px'}>
-      <Image src={travel.mainImage} alt='' />
-      <Container>
-        <Text>{travel.name}</Text>
-        <Text>{travel.idx}</Text>
-      </Container>
-      <Box>
+    <Tr key={reservation.idx}>
+      <Td>
+        <Flex alignItems={'center'}>
+          <Image src={reservation.mainImage} alt='' w='100px' />
+          <Box w='8' />
+          <Text textAlign={'left'}>{reservation.name}</Text>
+        </Flex>
+      </Td>
+
+      <Td>
+        <Text>{reservation.price}</Text>
+      </Td>
+      <Td>
         <NumberInput
+          w='100px'
           size='sm'
-          defaultValue={travel.quantity}
+          defaultValue={reservation.quantity}
           min={1}
-          max={travel.maximumPurchases}
+          max={reservation.maximumPurchases}
           onChange={handleQuantityChange}
         >
           <NumberInputField />
@@ -44,10 +52,14 @@ const ReservationCard = ({ travel }) => {
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <Text>{travel.price * travel.quantity}</Text>
-      </Box>
-      <Button onClick={handleRemoveResrvation}>삭제</Button>
-    </Flex>
+      </Td>
+      <Td>
+        <Text>{reservation.price * reservation.quantity}</Text>
+      </Td>
+      <Td>
+        <Button onClick={handleRemoveResrvation}>삭제</Button>
+      </Td>
+    </Tr>
   );
 };
 
