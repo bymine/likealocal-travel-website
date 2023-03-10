@@ -4,7 +4,7 @@ import ReservationCard from './ReservationCard';
 
 const ReservationList = ({ reservations }) => {
   return (
-    <TableContainer flex={1}>
+    <TableContainer w={'100%'} flex={1}>
       <Table variant='simple'>
         <Thead>
           <Tr>
