@@ -8,7 +8,7 @@ import {
   selectSpaceCategories,
   selectDefaultPrice,
   selectPriceCategories,
-} from '../redux/categories/categoriesSlice';
+} from '../redux/slices/categoriesSlice';
 import {
   Stack,
   Text,

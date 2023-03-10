@@ -2,7 +2,7 @@ import { Box, Stack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { TravelFilterBox, TravelList } from '../components';
-import { selectPriceCategories, selectSpaceCategories } from '../redux/categories/categoriesSlice';
+import { selectPriceCategories, selectSpaceCategories } from '../redux/slices/categoriesSlice';
 
 const isInRange = (range, targetNumber) => {
   return targetNumber >= range[0] && targetNumber <= range[1];

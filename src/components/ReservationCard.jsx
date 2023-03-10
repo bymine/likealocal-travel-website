@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { reservationQuantity, reservationRemove } from '../redux/reservations/reservationSlice';
+import { reservationQuantity, reservationRemove } from '../redux/slices/reservationSlice';
 import {
   Flex,
   Image,

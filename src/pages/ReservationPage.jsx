@@ -2,7 +2,7 @@ import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ReservationList } from '../components';
-import { selectAllReservations } from '../redux/reservations/reservationSlice';
+import { selectAllReservations } from '../redux/slices/reservationSlice';
 
 const ReservationPage = () => {
   const reservations = useSelector(selectAllReservations);

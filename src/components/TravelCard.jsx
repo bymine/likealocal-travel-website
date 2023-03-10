@@ -11,7 +11,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { reservationAdd } from '../redux/reservations/reservationSlice';
+import { reservationAdd } from '../redux/slices/reservationSlice';
 import TravelModal from './TravelModal';
 const TravelCard = ({ travel }) => {
   const dispatch = useDispatch();
