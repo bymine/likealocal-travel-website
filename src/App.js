@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import NavBar from './components/NavBar';
 import { MainPage, ReservationPage } from './pages';
 
@@ -7,9 +8,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path='/' element={<Navigate to={'/main'} />} />
-        <Route path='/main' element={<MainPage />} />
-        <Route path='/reservation' element={<ReservationPage />} />
+        <Route path="/" element={<Navigate to={'/main'} />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/reservation" element={<ReservationPage />} />
       </Routes>
     </BrowserRouter>
   );
