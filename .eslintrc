@@ -1,0 +1,36 @@
+{
+  "extends": ["react-app"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"], "unknown"],
+        "pathGroups": [
+          { "pattern": "react", "group": "builtin", "position": "after" },
+          {
+            "pattern": "react-dom/client",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "react-router-dom",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@chakra*",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+
+        "pathGroupsExcludedImportTypes": [],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
