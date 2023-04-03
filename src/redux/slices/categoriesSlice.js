@@ -36,14 +36,17 @@ const categoriesSlice = createSlice({
   },
 });
 
-export const { spaceUpdate, priceUpdate, categoryReset } = categoriesSlice.actions;
+export const { spaceUpdate, priceUpdate, categoryReset } =
+  categoriesSlice.actions;
 
 export default categoriesSlice.reducer;
 
 export const selectDefaultSpace = (state) => state.categories.defaultSpace;
 
-export const selectSpaceCategories = (state) => state.categories.spaceCategories;
+export const selectSpaceCategories = (state) =>
+  state.categories.spaceCategories;
 
 export const selectDefaultPrice = (state) => state.categories.defaultPrice;
 
-export const selectPriceCategories = (state) => state.categories.priceCategories;
+export const selectPriceCategories = (state) =>
+  state.categories.priceCategories;

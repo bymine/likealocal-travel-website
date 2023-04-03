@@ -1,11 +1,13 @@
-import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
 import React from 'react';
+
+import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
+
 import ReservationCard from './ReservationCard';
 
 const ReservationList = ({ reservations }) => {
   return (
     <TableContainer w={'100%'} flex={1}>
-      <Table variant='simple'>
+      <Table variant="simple">
         <Thead>
           <Tr>
             <Th>제품</Th>

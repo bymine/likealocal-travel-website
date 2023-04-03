@@ -1,14 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  categoryReset,
-  spaceUpdate,
-  priceUpdate,
-  selectDefaultSpace,
-  selectSpaceCategories,
-  selectDefaultPrice,
-  selectPriceCategories,
-} from '../redux/slices/categoriesSlice';
+
 import {
   Stack,
   Text,
@@ -23,6 +14,17 @@ import {
   Flex,
   Spacer,
 } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  categoryReset,
+  spaceUpdate,
+  priceUpdate,
+  selectDefaultSpace,
+  selectSpaceCategories,
+  selectDefaultPrice,
+  selectPriceCategories,
+} from '../redux/slices/categoriesSlice';
 
 const TravelFilterBox = () => {
   const dispatch = useDispatch();
@@ -34,15 +36,14 @@ const TravelFilterBox = () => {
   const priceCategories = useSelector(selectPriceCategories);
 
   return (
-    <Box h='auto' minW={'300px'} direction='column' m={8} borderWidth='1px'>
-      <Stack px={8} py={4} direction='row' spacing={0}>
+    <Box h="auto" minW={'300px'} direction="column" m={8} borderWidth="1px">
+      <Stack px={8} py={4} direction="row" spacing={0}>
         <Button
-          w='100%'
+          w="100%"
           colorScheme={'teal'}
           onClick={() => {
             dispatch(categoryReset());
-          }}
-        >
+          }}>
           초기화
         </Button>
       </Stack>
@@ -57,8 +58,7 @@ const TravelFilterBox = () => {
             isChecked={spaceCategories.includes(category)}
             onChange={() => {
               dispatch(spaceUpdate({ category }));
-            }}
-          >
+            }}>
             {category}
           </Checkbox>
         ))}
@@ -73,13 +73,12 @@ const TravelFilterBox = () => {
           value={priceCategories}
           onChange={(range) => {
             dispatch(priceUpdate({ range }));
-          }}
-        >
-          <RangeSliderTrack bg='teal.100'>
-            <RangeSliderFilledTrack bg='teal' />
+          }}>
+          <RangeSliderTrack bg="teal.100">
+            <RangeSliderFilledTrack bg="teal" />
           </RangeSliderTrack>
-          <RangeSliderThumb boxSize={3} index={0} bg='teal' />
-          <RangeSliderThumb boxSize={3} index={1} bg='teal' />
+          <RangeSliderThumb boxSize={3} index={0} bg="teal" />
+          <RangeSliderThumb boxSize={3} index={1} bg="teal" />
         </RangeSlider>
         <Flex>
           <Text>{priceCategories[0]}원</Text>

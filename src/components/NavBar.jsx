@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Button, Flex, Heading, Spacer } from '@chakra-ui/react';
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import { Box, Button, Flex, Heading, Spacer } from '@chakra-ui/react';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const NavBar = () => {
 
   return (
     <Flex px={8} py={4}>
-      <Link to='/main'>
+      <Link to="/main">
         <Heading>Travel</Heading>
       </Link>
       <Spacer />

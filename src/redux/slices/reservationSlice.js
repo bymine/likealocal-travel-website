@@ -35,21 +35,27 @@ const reservationsSlice = createSlice({
     },
     reservationQuantity(state, action) {
       const { idx, quantity } = action.payload;
-      const existingReservation = state.reservations.find((reservation) => reservation.idx === idx);
+      const existingReservation = state.reservations.find(
+        (reservation) => reservation.idx === idx,
+      );
 
       if (existingReservation) {
         existingReservation.quantity = quantity;
-        existingReservation.purchasePrice = existingReservation.price * quantity;
+        existingReservation.purchasePrice =
+          existingReservation.price * quantity;
       }
     },
     reservationRemove(state, action) {
       const { idx } = action.payload;
-      state.reservations = state.reservations.filter((reservation) => reservation.idx !== idx);
+      state.reservations = state.reservations.filter(
+        (reservation) => reservation.idx !== idx,
+      );
     },
   },
 });
 
-export const { reservationAdd, reservationQuantity, reservationRemove } = reservationsSlice.actions;
+export const { reservationAdd, reservationQuantity, reservationRemove } =
+  reservationsSlice.actions;
 
 export default reservationsSlice.reducer;
 

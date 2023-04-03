@@ -1,6 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { reservationQuantity, reservationRemove } from '../redux/slices/reservationSlice';
+
 import {
   Flex,
   Image,
@@ -15,6 +14,12 @@ import {
   Td,
   Box,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+
+import {
+  reservationQuantity,
+  reservationRemove,
+} from '../redux/slices/reservationSlice';
 
 const ReservationCard = ({ reservation }) => {
   const dispatch = useDispatch();
@@ -28,8 +33,8 @@ const ReservationCard = ({ reservation }) => {
     <Tr key={reservation.idx}>
       <Td>
         <Flex alignItems={'center'}>
-          <Image src={reservation.mainImage} alt='' w='100px' />
-          <Box w='8' />
+          <Image src={reservation.mainImage} alt="" w="100px" />
+          <Box w="8" />
           <Text textAlign={'left'}>{reservation.name}</Text>
         </Flex>
       </Td>
@@ -39,13 +44,12 @@ const ReservationCard = ({ reservation }) => {
       </Td>
       <Td>
         <NumberInput
-          w='100px'
-          size='sm'
+          w="100px"
+          size="sm"
           defaultValue={reservation.quantity}
           min={1}
           max={reservation.maximumPurchases}
-          onChange={handleQuantityChange}
-        >
+          onChange={handleQuantityChange}>
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Modal,
   ModalOverlay,
@@ -18,7 +19,7 @@ const TravelModal = ({ travel, isOpen, onClose }) => {
           <ModalHeader>{travel.name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image src={travel.mainImage} alt='' />
+            <Image src={travel.mainImage} alt="" />
             <Text>고유번호: {travel.idx}</Text>
             <Text>상품 제목: {travel.name}</Text>
             <Text>상품 설명: {travel.description}</Text>

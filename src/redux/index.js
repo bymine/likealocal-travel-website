@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reservationsReducer from './slices/reservationSlice';
+
 import categoriesReducer from './slices/categoriesSlice';
+import reservationsReducer from './slices/reservationSlice';
 
 export default configureStore({
   reducer: {

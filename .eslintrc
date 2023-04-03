@@ -1,0 +1,49 @@
+{
+  "extends": ["react-app", "eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "no-var": "error", // var 금지
+    "no-multiple-empty-lines": "error", // 여러 줄 공백 금지
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }], // console.log() 금지
+    "eqeqeq": "error", // 일치 연산자 사용 필수
+    "dot-notation": "error", // 가능하다면 dot notation 사용
+    "no-unused-vars": "error", // 사용하지 않는 변수 금지
+    "react/prop-types": 0,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling", "index"],
+          "unknown"
+        ],
+        "pathGroups": [
+          { "pattern": "react", "group": "builtin", "position": "after" },
+          {
+            "pattern": "react-dom/client",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "react-router-dom",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@chakra*",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+
+        "pathGroupsExcludedImportTypes": [],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
