@@ -8,10 +8,7 @@ import {
   selectPriceCategories,
   selectSpaceCategories,
 } from '../redux/slices/categoriesSlice';
-
-const isInRange = (range, targetNumber) => {
-  return targetNumber >= range[0] && targetNumber <= range[1];
-};
+import { isInRange } from '../utils';
 
 const MainPage = () => {
   const [travels, setTravels] = useState([]);
