@@ -5,3 +5,4 @@ export { default as TravelFilterBox } from './TravelFilterBox';
 export { default as TravelModal } from './TravelModal';
 export { default as ReservationCard } from './ReservationCard';
 export { default as ReservationList } from './ReservationList';
+export { default as Layout } from './Layout';
