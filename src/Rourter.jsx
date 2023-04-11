@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { Layout } from './components';
+import { PAGE } from './constants';
 import { MainPage, ReservationPage } from './pages';
 
 export default function Router() {
@@ -15,15 +16,15 @@ export default function Router() {
       element: <Layout />,
       children: [
         {
-          path: '/',
-          element: <Navigate to="/main" replace />,
+          path: PAGE.ROOT,
+          element: <Navigate to={PAGE.MAIN} replace />,
         },
         {
-          path: '/main',
+          path: PAGE.MAIN,
           element: <MainPage />,
         },
         {
-          path: '/reservation',
+          path: PAGE.RESERVATION,
           element: <ReservationPage />,
         },
       ],
