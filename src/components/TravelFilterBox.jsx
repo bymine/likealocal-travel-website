@@ -11,10 +11,10 @@ import {
   RangeSliderThumb,
   Button,
   Checkbox,
-  Divider,
   Box,
   Flex,
   Spacer,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 
 import {
@@ -56,57 +56,68 @@ const TravelFilterBox = () => {
     setSearchParams(searchParams);
   }
 
+  const filterDirections = useBreakpointValue({ base: 'column', md: 'row' });
+  const checkboxDirection = useBreakpointValue({ base: 'column', md: 'row' });
   return (
-    <Box h="auto" minW={'300px'} direction="column" m={8} borderWidth="1px">
-      <Stack px={8} py={4} direction="row" spacing={0}>
-        <Button
-          w="100%"
-          colorScheme={'teal'}
-          onClick={() => {
-            resetCategory();
-          }}>
-          초기화
-        </Button>
+    <Box direction="column" mx={8} borderWidth="1px" py={2}>
+      <Stack direction={filterDirections}>
+        <Box px={8}>
+          <Text fontWeight="bold" paddingBottom={2}>
+            지역 설정
+          </Text>
+          <Stack direction={checkboxDirection}>
+            {DEFAULT_SPACE.map((category) => (
+              <Checkbox
+                colorScheme="teal"
+                pl={4}
+                key={category}
+                name={category}
+                isChecked={spaceCategory.includes(category)}
+                onChange={() => spaceUpdate(category)}>
+                {category}
+              </Checkbox>
+            ))}
+          </Stack>
+        </Box>
+        <Box px={8} flex={1}>
+          <Text fontWeight="bold" paddingBottom={2}>
+            가격 설정
+          </Text>
+          <RangeSlider
+            min={MIN_PRICE}
+            max={MAX_PRICE}
+            step={1000}
+            value={priceCategory}
+            onChange={(range) => {
+              priceUpdate(range);
+            }}>
+            <RangeSliderTrack bg="teal.100">
+              <RangeSliderFilledTrack bg="teal" />
+            </RangeSliderTrack>
+            {priceCategory.map((_, index) => (
+              <RangeSliderThumb
+                key={index}
+                boxSize={3}
+                index={index}
+                bg="teal"
+              />
+            ))}
+          </RangeSlider>
+          <Flex>
+            <Text>{priceCategory[0]}원</Text>
+            <Spacer />
+            <Text>{priceCategory[1]}원</Text>
+          </Flex>
+        </Box>
       </Stack>
-      <Divider />
-      <>{}</>
-      <Stack px={8} py={4}>
-        <Text>지역 설정</Text>
-        {DEFAULT_SPACE.map((category) => (
-          <Checkbox
-            pl={4}
-            key={category}
-            name={category}
-            isChecked={spaceCategory.includes(category)}
-            onChange={() => spaceUpdate(category)}>
-            {category}
-          </Checkbox>
-        ))}
-      </Stack>
-      <Divider />
-      <Stack px={8} py={4}>
-        <Text>가격 설정</Text>
-        <RangeSlider
-          min={MIN_PRICE}
-          max={MAX_PRICE}
-          step={1000}
-          value={priceCategory}
-          onChange={(range) => {
-            priceUpdate(range);
-          }}>
-          <RangeSliderTrack bg="teal.100">
-            <RangeSliderFilledTrack bg="teal" />
-          </RangeSliderTrack>
-          {priceCategory.map((_, index) => (
-            <RangeSliderThumb key={index} boxSize={3} index={index} bg="teal" />
-          ))}
-        </RangeSlider>
-        <Flex>
-          <Text>{priceCategory[0]}원</Text>
-          <Spacer />
-          <Text>{priceCategory[1]}원</Text>
-        </Flex>
-      </Stack>
+      <Button
+        mx={8}
+        colorScheme="teal"
+        onClick={() => {
+          resetCategory();
+        }}>
+        초기화
+      </Button>
     </Box>
   );
 };
