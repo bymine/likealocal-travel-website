@@ -6,4 +6,7 @@ export { default as TravelModal } from './TravelModal';
 export { default as ReservationCard } from './ReservationCard';
 export { default as ReservationList } from './ReservationList';
 export { default as ReceiptBox } from './ReceiptBox';
+export { default as Loading } from './Loading';
+export { default as Error } from './Error';
+export { default as NotFound } from './NotFound';
 export { default as Layout } from './Layout';

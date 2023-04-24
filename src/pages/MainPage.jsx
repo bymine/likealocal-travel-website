@@ -3,14 +3,14 @@ import React, { Suspense } from 'react';
 import { Stack } from '@chakra-ui/react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { TravelFilterBox, TravelList } from '../components';
+import { Error, Loading, TravelFilterBox, TravelList } from '../components';
 
 const MainPage = () => {
   return (
     <Stack>
       <TravelFilterBox />
-      <ErrorBoundary fallback={<div>failed...</div>}>
-        <Suspense fallback={<>loading...</>}>
+      <ErrorBoundary fallback={<Error />}>
+        <Suspense fallback={<Loading />}>
           <TravelList />
         </Suspense>
       </ErrorBoundary>

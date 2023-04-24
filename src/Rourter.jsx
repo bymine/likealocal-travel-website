@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import { Layout } from './components';
+import { Layout, NotFound } from './components';
 import { PAGE } from './constants';
 import { MainPage, ReservationPage } from './pages';
 
@@ -28,6 +28,7 @@ export default function Router() {
           element: <ReservationPage />,
         },
       ],
+      errorElement: <NotFound />,
     },
   ]);
 
