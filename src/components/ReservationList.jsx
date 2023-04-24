@@ -6,7 +6,7 @@ import ReservationCard from './ReservationCard';
 
 const ReservationList = ({ reservations }) => {
   return (
-    <TableContainer w={'100%'} flex={1}>
+    <TableContainer w={'100%'} minH={'300px'} flex={1}>
       <Table variant="simple">
         <Thead>
           <Tr>
