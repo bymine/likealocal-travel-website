@@ -1,21 +1,19 @@
 import React, { Suspense } from 'react';
 
-import { Box, Stack } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { TravelFilterBox, TravelList } from '../components';
+import { Error, Loading, TravelFilterBox, TravelList } from '../components';
 
 const MainPage = () => {
   return (
-    <Stack direction="row">
-      <ErrorBoundary fallback={<div>failed...</div>}>
-        <Suspense fallback={<>loading...</>}>
+    <Stack>
+      <TravelFilterBox />
+      <ErrorBoundary fallback={<Error />}>
+        <Suspense fallback={<Loading />}>
           <TravelList />
         </Suspense>
       </ErrorBoundary>
-      <Box h="auto">
-        <TravelFilterBox />
-      </Box>
     </Stack>
   );
 };
