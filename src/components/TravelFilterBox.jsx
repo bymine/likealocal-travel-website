@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useSearchParams } from 'react-router-dom';
+
 import {
   Stack,
   Text,
@@ -14,26 +16,45 @@ import {
   Flex,
   Spacer,
 } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  categoryReset,
-  spaceUpdate,
-  priceUpdate,
-  selectDefaultSpace,
-  selectSpaceCategories,
-  selectDefaultPrice,
-  selectPriceCategories,
-} from '../redux/slices/categoriesSlice';
+  DEFAULT_SPACE,
+  MAX_PRICE,
+  MIN_PRICE,
+  QUERY_STRING,
+} from '../constants';
 
 const TravelFilterBox = () => {
-  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const defaultSpace = useSelector(selectDefaultSpace);
-  const defaultPrice = useSelector(selectDefaultPrice);
+  const spaceCategory = (searchParams.get(QUERY_STRING.SPACE) ?? '').split(',');
+  const priceCategory = (searchParams.get(QUERY_STRING.PRICE) ?? '')
+    .split(',')
+    .map((element) => parseInt(element));
 
-  const spaceCategories = useSelector(selectSpaceCategories);
-  const priceCategories = useSelector(selectPriceCategories);
+  function spaceUpdate(category) {
+    let updatedSpace = [...spaceCategory];
+
+    if (spaceCategory.includes(category)) {
+      updatedSpace = updatedSpace.filter((space) => space !== category);
+    } else {
+      updatedSpace.push(category);
+    }
+
+    searchParams.set(QUERY_STRING.SPACE, updatedSpace.join(','));
+    setSearchParams(searchParams);
+  }
+
+  function priceUpdate(range) {
+    searchParams.set(QUERY_STRING.PRICE, `${range[0]},${range[1]}`);
+    setSearchParams(searchParams);
+  }
+
+  function resetCategory() {
+    searchParams.delete(QUERY_STRING.SPACE);
+    searchParams.delete(QUERY_STRING.PRICE);
+    setSearchParams(searchParams);
+  }
 
   return (
     <Box h="auto" minW={'300px'} direction="column" m={8} borderWidth="1px">
@@ -42,23 +63,22 @@ const TravelFilterBox = () => {
           w="100%"
           colorScheme={'teal'}
           onClick={() => {
-            dispatch(categoryReset());
+            resetCategory();
           }}>
           초기화
         </Button>
       </Stack>
       <Divider />
+      <>{}</>
       <Stack px={8} py={4}>
         <Text>지역 설정</Text>
-        {defaultSpace.map((category) => (
+        {DEFAULT_SPACE.map((category) => (
           <Checkbox
             pl={4}
             key={category}
             name={category}
-            isChecked={spaceCategories.includes(category)}
-            onChange={() => {
-              dispatch(spaceUpdate({ category }));
-            }}>
+            isChecked={spaceCategory.includes(category)}
+            onChange={() => spaceUpdate(category)}>
             {category}
           </Checkbox>
         ))}
@@ -67,23 +87,24 @@ const TravelFilterBox = () => {
       <Stack px={8} py={4}>
         <Text>가격 설정</Text>
         <RangeSlider
-          min={defaultPrice[0]}
-          max={defaultPrice[1]}
+          min={MIN_PRICE}
+          max={MAX_PRICE}
           step={1000}
-          value={priceCategories}
+          value={priceCategory}
           onChange={(range) => {
-            dispatch(priceUpdate({ range }));
+            priceUpdate(range);
           }}>
           <RangeSliderTrack bg="teal.100">
             <RangeSliderFilledTrack bg="teal" />
           </RangeSliderTrack>
-          <RangeSliderThumb boxSize={3} index={0} bg="teal" />
-          <RangeSliderThumb boxSize={3} index={1} bg="teal" />
+          {priceCategory.map((_, index) => (
+            <RangeSliderThumb key={index} boxSize={3} index={index} bg="teal" />
+          ))}
         </RangeSlider>
         <Flex>
-          <Text>{priceCategories[0]}원</Text>
+          <Text>{priceCategory[0]}원</Text>
           <Spacer />
-          <Text>{priceCategories[1]}원</Text>
+          <Text>{priceCategory[1]}원</Text>
         </Flex>
       </Stack>
     </Box>
