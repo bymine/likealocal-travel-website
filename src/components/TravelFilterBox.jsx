@@ -17,38 +17,42 @@ import {
   Spacer,
 } from '@chakra-ui/react';
 
+import {
+  DEFAULT_SPACE,
+  MAX_PRICE,
+  MIN_PRICE,
+  QUERY_STRING,
+} from '../constants';
+
 const TravelFilterBox = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const defaultSpace = ['서울', '강원', '부산', '대구', '제주'];
-  const defaultPrice = [0, 30000];
-
-  const spaceCategory = (searchParams.get('space') ?? '').split(',');
-  const priceCategory = (searchParams.get('price') ?? '')
+  const spaceCategory = (searchParams.get(QUERY_STRING.SPACE) ?? '').split(',');
+  const priceCategory = (searchParams.get(QUERY_STRING.PRICE) ?? '')
     .split(',')
     .map((element) => parseInt(element));
 
   function spaceUpdate(category) {
     let updatedSpace = [...spaceCategory];
+
     if (spaceCategory.includes(category)) {
       updatedSpace = updatedSpace.filter((space) => space !== category);
     } else {
       updatedSpace.push(category);
     }
-    searchParams.set('space', updatedSpace.join(','));
 
+    searchParams.set(QUERY_STRING.SPACE, updatedSpace.join(','));
     setSearchParams(searchParams);
   }
 
   function priceUpdate(range) {
-    searchParams.set('price', `${range[0]},${range[1]}`);
-
+    searchParams.set(QUERY_STRING.PRICE, `${range[0]},${range[1]}`);
     setSearchParams(searchParams);
   }
 
   function resetCategory() {
-    searchParams.delete('space');
-    searchParams.delete('price');
+    searchParams.delete(QUERY_STRING.SPACE);
+    searchParams.delete(QUERY_STRING.PRICE);
     setSearchParams(searchParams);
   }
 
@@ -68,7 +72,7 @@ const TravelFilterBox = () => {
       <>{}</>
       <Stack px={8} py={4}>
         <Text>지역 설정</Text>
-        {defaultSpace.map((category) => (
+        {DEFAULT_SPACE.map((category) => (
           <Checkbox
             pl={4}
             key={category}
@@ -83,8 +87,8 @@ const TravelFilterBox = () => {
       <Stack px={8} py={4}>
         <Text>가격 설정</Text>
         <RangeSlider
-          min={defaultPrice[0]}
-          max={defaultPrice[1]}
+          min={MIN_PRICE}
+          max={MAX_PRICE}
           step={1000}
           value={priceCategory}
           onChange={(range) => {

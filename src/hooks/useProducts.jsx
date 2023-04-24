@@ -5,6 +5,12 @@ import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { fetchData } from '../apis';
+import {
+  DEFAULT_SPACE,
+  MAX_PRICE,
+  MIN_PRICE,
+  QUERY_STRING,
+} from '../constants';
 import { isInRange } from '../utils';
 
 const useProducts = () => {
@@ -17,20 +23,18 @@ const useProducts = () => {
   });
   useEffect(() => {
     if (!searchParams.has('space')) {
-      const querystring = '서울,강원,부산,대구,제주';
-      searchParams.set('space', querystring);
+      searchParams.set(QUERY_STRING.SPACE, DEFAULT_SPACE.join(','));
     }
 
     if (!searchParams.has('price')) {
-      const querystring = '0,30000';
-      searchParams.set('price', querystring);
+      searchParams.set(QUERY_STRING.PRICE, `${MIN_PRICE},${MAX_PRICE}`);
     }
 
     setSearchParams(searchParams);
   }, [searchParams, setSearchParams]);
 
-  const spaceCategory = (searchParams.get('space') ?? '').split(',');
-  const priceCategory = (searchParams.get('price') ?? '').split(',');
+  const spaceCategory = (searchParams.get(QUERY_STRING.SPACE) ?? '').split(',');
+  const priceCategory = (searchParams.get(QUERY_STRING.PRICE) ?? '').split(',');
 
   const product = data.filter((product) => {
     return (
