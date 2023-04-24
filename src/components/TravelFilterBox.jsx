@@ -22,33 +22,26 @@ const TravelFilterBox = () => {
 
   const defaultSpace = ['서울', '강원', '부산', '대구', '제주'];
   const defaultPrice = [0, 30000];
-  const spaceCategory = searchParams.getAll('space');
-  const priceCategory = searchParams
-    .getAll('price')
+
+  const spaceCategory = (searchParams.get('space') ?? '').split(',');
+  const priceCategory = (searchParams.get('price') ?? '')
+    .split(',')
     .map((element) => parseInt(element));
 
   function spaceUpdate(category) {
-    const updatedSpace = [...spaceCategory];
+    let updatedSpace = [...spaceCategory];
     if (spaceCategory.includes(category)) {
-      updatedSpace.filter((space) => space !== category);
+      updatedSpace = updatedSpace.filter((space) => space !== category);
     } else {
       updatedSpace.push(category);
     }
-
-    searchParams.delete('space');
-
-    updatedSpace.forEach((space, index) =>
-      index === 0
-        ? searchParams.set('space', space)
-        : searchParams.append('space', space),
-    );
+    searchParams.set('space', updatedSpace.join(','));
 
     setSearchParams(searchParams);
   }
 
   function priceUpdate(range) {
-    searchParams.set('price', range[0]);
-    searchParams.append('price', range[1]);
+    searchParams.set('price', `${range[0]},${range[1]}`);
 
     setSearchParams(searchParams);
   }

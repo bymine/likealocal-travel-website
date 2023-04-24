@@ -17,23 +17,20 @@ const useProducts = () => {
   });
   useEffect(() => {
     if (!searchParams.has('space')) {
-      searchParams.set('space', '서울');
-      searchParams.append('space', '강원');
-      searchParams.append('space', '부산');
-      searchParams.append('space', '대구');
-      searchParams.append('space', '제주');
+      const querystring = '서울,강원,부산,대구,제주';
+      searchParams.set('space', querystring);
     }
 
     if (!searchParams.has('price')) {
-      searchParams.set('price', 0);
-      searchParams.append('price', 30000);
+      const querystring = '0,30000';
+      searchParams.set('price', querystring);
     }
 
     setSearchParams(searchParams);
   }, [searchParams, setSearchParams]);
 
-  const spaceCategory = searchParams.getAll('space');
-  const priceCategory = searchParams.getAll('price');
+  const spaceCategory = (searchParams.get('space') ?? '').split(',');
+  const priceCategory = (searchParams.get('price') ?? '').split(',');
 
   const product = data.filter((product) => {
     return (
