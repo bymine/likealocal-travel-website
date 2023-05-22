@@ -1,70 +1,145 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 6팀 2주차 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📝 과제 소개 및 목적
 
-## Available Scripts
+> TravelTech 스타트업 '라이크어로컬'의 기업과제로 여행 상품 목록과 장바구니를 구현하며 모범사례 도출과 동료학습을 목적으로 했습니다.
 
-In the project directory, you can run:
+<br/>
+<br/>
 
-### `npm start`
+## 🎥 작동 화면
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 여행상품 필터링 화면
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![라이크어로컬 상품 필터링](https://github.com/bymine/travel-website/assets/71866185/69695761-3db5-4e75-bfee-c61802e1988f)
 
-### `npm test`
+<br/>
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 여행상품 장바구니 화면
 
-### `npm run build`
+![라이크어로컬 장바구니](https://github.com/bymine/travel-website/assets/71866185/a52e3ef3-6c5d-4462-b139-f99b6eb769bd)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br/>
+<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🕹️ **프로젝트 실행 방법**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+git clone https://github.com/bymine/travel-website.git
+cd travel-website
+npm install
+npm start
+```
 
-### `npm run eject`
+<br/>
+<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🔗 배포 링크
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[https://wanted-pre-onboarding-frontend-2.vercel.app/](https://wanted-pre-onboarding-frontend-2.vercel.app/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br/>
+<br/>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 🛠️ 기술 스택
 
-## Learn More
+<p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![CRA](https://img.shields.io/badge/CRA-09D3AC?style=for-the-badge&logo=React)
+![ReduxToolkit](https://img.shields.io/badge/ReduxToolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=fff)
+![React-router](https://img.shields.io/badge/REACT--ROUTER--DOM-343a40?style=for-the-badge&logo=ReactRouter&logoColor=CA4245)
+<img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+![Chakra-UI](https://img.shields.io/badge/Chakra-UI-319795?style=for-the-badge&logo=Chakra-UI)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint)
+![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=fff)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</p>
 
-### Code Splitting
+<br/>
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📂 폴더 구조
 
-### Analyzing the Bundle Size
+```
+📦src
+ ┣ 📂apis
+ ┃ ┗ 📜index.js
+ ┣ 📂components
+ ┃ ┣ 📜Error.jsx
+ ┃ ┣ 📜index.js
+ ┃ ┣ 📜Layout.jsx
+ ┃ ┣ 📜Loading.jsx
+ ┃ ┣ 📜NavBar.jsx
+ ┃ ┣ 📜NotFound.jsx
+ ┃ ┣ 📜ReceiptBox.jsx
+ ┃ ┣ 📜ReservationCard.jsx
+ ┃ ┣ 📜ReservationList.jsx
+ ┃ ┣ 📜TravelCard.jsx
+ ┃ ┣ 📜TravelFilterBox.jsx
+ ┃ ┣ 📜TravelList.jsx
+ ┃ ┗ 📜TravelModal.jsx
+ ┣ 📂constants
+ ┃ ┗ 📜index.js
+ ┣ 📂hooks
+ ┃ ┗ 📜useProducts.jsx
+ ┣ 📂pages
+ ┃ ┣ 📜index.js
+ ┃ ┣ 📜MainPage.jsx
+ ┃ ┗ 📜ReservationPage.jsx
+ ┣ 📂redux
+ ┃ ┣ 📂slices
+ ┃ ┃ ┗ 📜reservationSlice.js
+ ┃ ┗ 📜index.js
+ ┣ 📂utils
+ ┃ ┗ 📜index.js
+ ┣ 📜App.js
+ ┣ 📜index.js
+ ┗ 📜Rourter.jsx
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<br/>
+<br/>
 
-### Making a Progressive Web App
+## 🚀 요구사항
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `/main` 페이지
 
-### Advanced Configuration
+  - [x] 사용자의 방문시 `/`으로부터 리다이렉트
+  - [x] 여행 상품 목록 출력
+  - [x] 예약 버튼 클릭시 장바구니에 상품 데이터 저장
+  - [x] 여행 상품 정보 클릭 시 모달창으로 상세 정보 표시
+  - [x] 여행 상품 리스트의 가격(price), 공간(spaceCategory) 필터링
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    - [x] 개별 필터링, 다중 필터링
+    - [x] 예시) [0 ~ 3000] 또는 [서울, 부산] 또는 [0 ~ 3000] && [서울, 부산]
+          <br/>
 
-### Deployment
+- `/reservations` 페이지
+  - [x] 예약한 여행 상품 목록 출력
+  - [x] 예약한 상품 삭제
+  - [x] 여행 상품의 구매 수량 변경 가능
+  - [x] 장바구니 여행 상품의 총 결제액수 계산 및 표시
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<br/>
+<br/>
 
-### `npm run build` fails to minify
+## 🥇 기술적 구현 사항
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### React-Router-Dom의 useSearchParams를 활용하여 상품 필터링 기능 구현
+
+- 장소와 가격을통해 상품을 필터링 할 수 있도록 구현하였습니다.
+- 상품 리스트 페이지는 현재 URL의 쿼리 매개변수를 읽어와 해당하는 상품들을 필터링하여 보여줍니다.
+  <br/>
+
+### Chakra-ui를 활용하여 여행 상품 사이트 UI 구성
+
+- 상품 리스트 페이지와 장바구니 페이지는 각각 Chakra-UI의 `Grid`, `Table Container` 컴포넌트를 활용하였습니다.
+- 필터링 영역은 `Checkbox`, `RangeSlider` 컴포넌트를 활용하였습니다.
+
+<br/>
+
+### Redux-toolkit을 활용하여 장바구니 기능 구현
+
+- Redux-toolkit을 사용하여 장바구니 기능을 구현하였습니다. Redux-toolkit은 Redux를 보다 쉽게 사용할 수 있도록 도와주는 라이브러리입니다.
+- 전역 상태 관리를 위해 Redux를 사용했습니다.
