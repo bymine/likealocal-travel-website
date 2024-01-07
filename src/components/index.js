@@ -9,4 +9,5 @@ export { default as ReceiptBox } from './ReceiptBox';
 export { default as Loading } from './Loading';
 export { default as Error } from './Error';
 export { default as NotFound } from './NotFound';
+export { default as Coming } from './Coming';
 export { default as Layout } from './Layout';

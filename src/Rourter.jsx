@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import { Layout, NotFound } from './components';
+import { Coming, Layout, NotFound } from './components';
 import { PAGE } from './constants';
 import { MainPage, ReservationPage } from './pages';
 
@@ -26,6 +26,10 @@ export default function Router() {
         {
           path: PAGE.RESERVATION,
           element: <ReservationPage />,
+        },
+        {
+          path: PAGE.COMING,
+          element: <Coming />,
         },
       ],
       errorElement: <NotFound />,
